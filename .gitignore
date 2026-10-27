@@ -1,2 +1,23 @@
 node_modules/
+coverage/
+dist/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+*.log
 npm-debug.log*
+*.tmp
+*.swp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE metadata
+.idea/
+.vscode/*.log
