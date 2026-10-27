@@ -1,20 +1,80 @@
 <!DOCTYPE html>
-<html ng-app="worklist">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172c35">
   <title>WorkList</title>
-  
-  <script src="lib/angular/angular.min.js"></script>
-  <script src="app/app.js"></script>
-  <script src="app/main/main_controller.js"></script>
+  <meta name="description" content="Organiza tus tareas del día con WorkList.">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="app/main/main_controller.js?v=2" defer></script>
 </head>
-
 <body>
-  <main ng-controller="mainCtrl">
-    <h1>{{saludar}}</h1>
-    <button type="button" ng-click="mostrarScope()">Mostrar en consola</button>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="WorkList, ir al inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="m8 16 5 5L24 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 3a13 13 0 1 0 13 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>Work<span class="brand-light">List</span></span>
+    </a>
+    <span class="topbar-note">Un paso a la vez.</span>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow" id="today-label"></p>
+      <h1 id="page-title">Haz espacio para <span>lo importante.</span></h1>
+      <p class="intro-copy">Anota tus pendientes y avanza a tu propio ritmo.</p>
+    </section>
+
+    <section class="todo-card" aria-label="Lista de tareas">
+      <form class="task-form" id="task-form">
+        <label class="sr-only" for="task-input">Nueva tarea</label>
+        <span class="input-plus" aria-hidden="true">+</span>
+        <input id="task-input" name="task" type="text" maxlength="160" placeholder="¿Qué tienes en mente?" autocomplete="off" required>
+        <button class="add-button" type="submit">Agregar tarea <span aria-hidden="true">↗</span></button>
+      </form>
+
+      <p class="notice" id="notice" role="status" aria-live="polite"></p>
+
+      <div class="list-heading">
+        <div>
+          <h2>Mis tareas</h2>
+          <p id="task-summary">Todo empieza con una tarea.</p>
+        </div>
+        <span class="task-count" id="task-count" aria-label="Tareas pendientes">0</span>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filtrar tareas">
+        <button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">Todas <span id="all-count">0</span></button>
+        <button class="filter-button" type="button" data-filter="active" aria-pressed="false">Pendientes <span id="active-count">0</span></button>
+        <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Completadas <span id="completed-count">0</span></button>
+      </div>
+
+      <ul class="task-list" id="task-list" aria-label="Tareas"></ul>
+
+      <div class="empty-state" id="empty-state">
+        <span class="empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none">
+            <rect x="10" y="8" width="28" height="34" rx="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M18 8.5h12a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3Z" fill="currentColor"/>
+            <path d="m18 24 4 4 8-9M18 34h12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 id="empty-title">Tu lista está despejada</h3>
+        <p id="empty-copy">Agrega una tarea y empieza por algo pequeño.</p>
+      </div>
+
+      <footer class="list-footer">
+        <p><span class="footer-dot" aria-hidden="true"></span> Tus tareas se guardan en este dispositivo</p>
+        <button class="clear-button" id="clear-completed" type="button" hidden>Limpiar completadas</button>
+      </footer>
+    </section>
+
+    <p class="page-footer">Hecho para ayudarte a seguir adelante.</p>
   </main>
 </body>
-
 </html>
